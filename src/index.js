@@ -18,9 +18,11 @@ const carList = [
   { id: 2, make: "Porche", model: "911 Spyder", year: 2021, color: "Navy", price: 150000 },
 ];
 
-const elements = <>
-  <ColorTool colors={colorList} />
-  <CarTool cars={carList} />
-</>;
+const elements = (
+  <>
+    <ColorTool colors={colorList} />
+    <CarTool cars={carList} />
+  </>
+);
 
 render(elements, document.querySelector("#root"));
