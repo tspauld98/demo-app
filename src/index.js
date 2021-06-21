@@ -2,11 +2,11 @@
 
 import { render } from 'react-dom';
 
-import { HelloWorld } from './components/HelloWorld';
+import { ColorTool } from './components/ColorTool';
 import { CarTool } from './components/CarTool';
 
 const elements = <>
-  <HelloWorld />
+  <ColorTool />
   <CarTool />
 </>;
 
