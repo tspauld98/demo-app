@@ -1,11 +1,6 @@
-export const CarTool = () => {
+export const CarTool = (props) => {
 
-  const cars = [
-    { id: 1, make: "Toyota", model: "Avalon Limited Hybrid", year: 2019, color: "White", price: 45000 },
-    { id: 2, make: "Porche", model: "911 Spyder", year: 2021, color: "Navy", price: 150000 },
-  ];
-
-  const carItems = cars.map((car) => {
+  const carItems = props.cars.map((car) => {
     return (
       <tr key={car.id}>
         <td>{car.id}</td>
