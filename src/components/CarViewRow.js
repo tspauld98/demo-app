@@ -1,4 +1,4 @@
-export const CarViewRow = ({ car }) => <>
+export const CarViewRow = ({ car, deleteCar }) => <>
   <tr>
     <td>{car.id}</td>
     <td>{car.carMake}</td>
@@ -6,6 +6,6 @@ export const CarViewRow = ({ car }) => <>
     <td>{car.carYear}</td>
     <td>{car.carColor}</td>
     <td>{car.carPrice}</td>
-    <td>Actions for {car.id}</td>
+    <td><button type="button" value={car.id} onClick={ () => deleteCar(car.id) }>Delete</button></td>
   </tr>
 </>;

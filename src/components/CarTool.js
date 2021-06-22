@@ -40,6 +40,12 @@ export const CarTool = ({ cars: initialCars }) => {
     })
   }
 
+  const deleteCar = (carId) => {
+    setCars([
+      ...cars
+    ].filter(car => car.id !== carId));
+  };
+
   console.log(carForm);
 
   // const carItems = props.cars.map((car) => {
@@ -58,7 +64,7 @@ export const CarTool = ({ cars: initialCars }) => {
   return (
     <>
       <ToolHeader toolTitle="Car Tool" />
-      <CarTable cars={cars} />
+      <CarTable cars={cars} deleteCar={deleteCar} />
       <br/>
       <form>
         <div>
