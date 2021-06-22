@@ -65,7 +65,7 @@ export const CarTool = ({ cars: initialCars, crHolder }) => {
   return (
     <>
       <ToolHeader toolTitle="Car Tool" />
-      <CarTable cars={cars} deleteCar={deleteCar} />
+      <CarTable cars={cars} onDeleteCar={deleteCar} />
       <br/>
       <form>
         <div>

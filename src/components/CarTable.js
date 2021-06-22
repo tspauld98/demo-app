@@ -1,6 +1,6 @@
 import { CarViewRow } from './CarViewRow';
 
-export const CarTable = ({ cars, deleteCar }) => <>
+export const CarTable = ({ cars, onDeleteCar: deleteCar }) => <>
   <table>
     <thead>
       <tr>
@@ -13,6 +13,6 @@ export const CarTable = ({ cars, deleteCar }) => <>
         <th>Actions</th>
       </tr>
     </thead>
-    <tbody>{cars.map(car => <CarViewRow key={car.id} car={car} deleteCar={deleteCar} />)}</tbody>
+    <tbody>{cars.map(car => <CarViewRow key={car.id} car={car} onDeleteCar={deleteCar} />)}</tbody>
   </table>
 </>;
