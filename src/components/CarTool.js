@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { ToolHeader } from './ToolHeader';
 import { CarTable } from './CarTable';
+import { ToolFooter } from './ToolFooter';
 
 export const CarTool = ({ cars: initialCars }) => {
 
@@ -89,6 +90,8 @@ export const CarTool = ({ cars: initialCars }) => {
         </div>
         <button type="button" onClick={addCar}>Add Car</button>
       </form>
+      <br/>
+      <ToolFooter />
     </>
   );
 

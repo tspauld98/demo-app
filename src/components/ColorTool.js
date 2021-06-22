@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { ToolHeader } from "./ToolHeader";
 import { ColorList } from "./ColorList";
+import { ToolFooter } from "./ToolFooter";
 
 export const ColorTool = ({ colors: initialColors }) => {
 
@@ -51,6 +52,8 @@ export const ColorTool = ({ colors: initialColors }) => {
         </div>
         <button type="button" onClick={addColor}>Add Color</button>
       </form>
+      <br/>
+      <ToolFooter />
     </>
   );
 };
