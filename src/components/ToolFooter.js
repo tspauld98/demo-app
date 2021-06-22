@@ -1,5 +1,5 @@
-export const ToolFooter = () => <>
+export const ToolFooter = ({ copyRightHolder }) => <>
   <footer>
-    <small>Copyright 2021. A Cool Company, Inc.</small>
+    <small>Copyright {new Date().getFullYear()}. {copyRightHolder}</small>
   </footer>
 </>;

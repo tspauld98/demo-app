@@ -16,10 +16,12 @@ const carList = [
   { id: 2, carMake: "Porche", carModel: "911 Spyder", carYear: "2021", carColor: "Navy", carPrice: "$150,000" },
 ];
 
+const crHolder = "A Cool Company, Inc.";
+
 const elements = (
   <>
-    <ColorTool colors={colorList} />
-    <CarTool cars={carList} />
+    <ColorTool colors={colorList} crHolder={crHolder} />
+    <CarTool cars={carList} crHolder={crHolder} />
   </>
 );
 

@@ -4,7 +4,7 @@ import { ToolHeader } from "./ToolHeader";
 import { ColorList } from "./ColorList";
 import { ToolFooter } from "./ToolFooter";
 
-export const ColorTool = ({ colors: initialColors }) => {
+export const ColorTool = ({ colors: initialColors, crHolder }) => {
 
   const [ colors, setColors ] = useState([ ...initialColors ]);
 
@@ -53,7 +53,7 @@ export const ColorTool = ({ colors: initialColors }) => {
         <button type="button" onClick={addColor}>Add Color</button>
       </form>
       <br/>
-      <ToolFooter />
+      <ToolFooter copyRightHolder={crHolder}/>
     </>
   );
 };

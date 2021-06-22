@@ -4,7 +4,7 @@ import { ToolHeader } from './ToolHeader';
 import { CarTable } from './CarTable';
 import { ToolFooter } from './ToolFooter';
 
-export const CarTool = ({ cars: initialCars }) => {
+export const CarTool = ({ cars: initialCars, crHolder }) => {
 
   const [ cars, setCars ] = useState([ ...initialCars ]);
 
@@ -91,7 +91,7 @@ export const CarTool = ({ cars: initialCars }) => {
         <button type="button" onClick={addCar}>Add Car</button>
       </form>
       <br/>
-      <ToolFooter />
+      <ToolFooter copyRightHolder={crHolder}/>
     </>
   );
 
