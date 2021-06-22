@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { ToolHeader } from './ToolHeader';
+import { CarTable } from './CarTable';
 
 export const CarTool = ({ cars: initialCars }) => {
 
@@ -57,28 +58,7 @@ export const CarTool = ({ cars: initialCars }) => {
   return (
     <>
       <ToolHeader toolTitle="Car Tool" />
-      <table>
-        <thead>
-        <tr>
-          <th>Id</th>
-          <th>Make</th>
-          <th>Model</th>
-          <th>Year</th>
-          <th>Color</th>
-          <th>Price</th>
-        </tr>
-        </thead>
-        <tbody>{cars.map(car => <>
-          <tr key={car.id}>
-            <td>{car.id}</td>
-            <td>{car.carMake}</td>
-            <td>{car.carModel}</td>
-            <td>{car.carYear}</td>
-            <td>{car.carColor}</td>
-            <td>{car.carPrice}</td>
-          </tr>
-        </>)}</tbody>
-      </table>
+      <CarTable cars={cars} />
       <br/>
       <form>
         <div>
