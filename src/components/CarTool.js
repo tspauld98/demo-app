@@ -54,9 +54,6 @@ export const CarTool = ({ cars: initialCars }) => {
 
   return (
     <>
-      <header>
-        <h1>Car Tool</h1>
-      </header>
       <table>
         <thead>
         <tr>

@@ -35,9 +35,6 @@ export const ColorTool = ({ colors: initialColors }) => {
 
   return (
     <>
-      <header>
-        <h1>Color Tool</h1>
-      </header>
       <ul>{colors.map(color => <li key={color.id}>{color.colorName}</li>)}</ul>
       <form>
         <div>
