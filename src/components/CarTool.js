@@ -1,6 +1,8 @@
 import { useState } from 'react';
 
-export const CarTool = (props) => {
+export const CarTool = ({ cars: initialCars }) => {
+
+  const [ cars, setCars ] = useState([ ...initialCars ]);
 
   const [ carForm, setCarForm ] = useState({
     carMake: '',
@@ -17,20 +19,38 @@ export const CarTool = (props) => {
     });
   };
 
+  const addCar = () => {
+    setCars([
+      ...cars,
+      {
+        ...carForm,
+        id: Math.max(...cars.map((c) => c.id)) + 1,
+      }
+    ]);
+
+    setCarForm({
+      carMake: '',
+      carModel: '',
+      carYear: '',
+      carColor: '',
+      carPrice: '',  
+    })
+  }
+
   console.log(carForm);
 
-  const carItems = props.cars.map((car) => {
-    return (
-      <tr key={car.id}>
-        <td>{car.id}</td>
-        <td>{car.make}</td>
-        <td>{car.model}</td>
-        <td>{car.year}</td>
-        <td>{car.color}</td>
-        <td>{car.price}</td>
-      </tr>
-    );
-  });
+  // const carItems = props.cars.map((car) => {
+  //   return (
+  //     <tr key={car.id}>
+  //       <td>{car.id}</td>
+  //       <td>{car.carMake}</td>
+  //       <td>{car.carModel}</td>
+  //       <td>{car.carYear}</td>
+  //       <td>{car.carColor}</td>
+  //       <td>{car.carPrice}</td>
+  //     </tr>
+  //   );
+  // });
 
   return (
     <>
@@ -48,7 +68,16 @@ export const CarTool = (props) => {
           <th>Price</th>
         </tr>
         </thead>
-        <tbody>{carItems}</tbody>
+        <tbody>{cars.map(car => <>
+          <tr key={car.id}>
+            <td>{car.id}</td>
+            <td>{car.carMake}</td>
+            <td>{car.carModel}</td>
+            <td>{car.carYear}</td>
+            <td>{car.carColor}</td>
+            <td>{car.carPrice}</td>
+          </tr>
+        </>)}</tbody>
       </table>
       <br/>
       <form>
@@ -72,6 +101,7 @@ export const CarTool = (props) => {
           <label htmlFor="car-price-input">Car Price</label>
           <input type="text" id="car-price-input" value={carForm.carPrice} onChange={change} name="carPrice" />
         </div>
+        <button type="button" onClick={addCar}>Add Car</button>
       </form>
     </>
   );

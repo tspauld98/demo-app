@@ -12,8 +12,8 @@ const colorList = [
 ];
 
 const carList = [
-  { id: 1, make: "Toyota", model: "Avalon Limited Hybrid", year: 2019, color: "White", price: 45000 },
-  { id: 2, make: "Porche", model: "911 Spyder", year: 2021, color: "Navy", price: 150000 },
+  { id: 1, carMake: "Toyota", carModel: "Avalon Limited Hybrid", carYear: "2019", carColor: "White", carPrice: "$45,000" },
+  { id: 2, carMake: "Porche", carModel: "911 Spyder", carYear: "2021", carColor: "Navy", carPrice: "$150,000" },
 ];
 
 const elements = (
