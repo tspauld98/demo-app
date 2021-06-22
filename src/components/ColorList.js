@@ -1,0 +1,1 @@
+export const ColorList = ({ colors }) => <ul>{colors.map(color => <li key={color.id}>{color.colorName}</li>)}</ul>;

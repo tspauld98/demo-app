@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { ToolHeader } from "./ToolHeader";
+import { ColorList } from "./ColorList";
 
 export const ColorTool = ({ colors: initialColors }) => {
 
@@ -38,7 +39,7 @@ export const ColorTool = ({ colors: initialColors }) => {
   return (
     <>
       <ToolHeader toolTitle="Color Tool" />
-      <ul>{colors.map(color => <li key={color.id}>{color.colorName}</li>)}</ul>
+      <ColorList colors={colors} />
       <form>
         <div>
           <label htmlFor="color-name-input">Color Name</label>
