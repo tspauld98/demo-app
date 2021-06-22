@@ -4,7 +4,6 @@ import { render } from 'react-dom';
 
 import { ColorTool } from './components/ColorTool';
 import { CarTool } from './components/CarTool';
-import { ToolHeader } from './components/ToolHeader';
 
 const colorList = [
   { id: 1, colorName: "green" },
@@ -19,9 +18,7 @@ const carList = [
 
 const elements = (
   <>
-    <ToolHeader toolTitle="Color Tool" />
     <ColorTool colors={colorList} />
-    <ToolHeader toolTitle="Car Tool" />
     <CarTool cars={carList} />
   </>
 );
