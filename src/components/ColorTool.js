@@ -14,7 +14,7 @@ export const ColorTool = ({ colors: initialColors, crHolder }) => {
       ...colors,
       {
         ...colorForm,
-        id: Math.max(...colors.map((c) => c.id)) + 1,
+        id: Math.max(...colors.map((c) => c.id), 0) + 1,
       },
     ]);
   }
