@@ -26,7 +26,7 @@ export const CarForm = ({ onSubmitForm, submitButtonLabel }) => {
       carYear: '',
       carColor: '',
       carPrice: '',  
-    });    
+    });
   };
 
   return (

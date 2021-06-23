@@ -15,6 +15,10 @@ export const CarTool = ({ cars: initialCars, crHolder }) => {
     setCarEditId(carId);
   };
 
+  const resetCarEdit = () => {
+    setCarEditId(0);
+  }
+
   const addCar = (carForm) => {
     setCars([
       ...cars,
@@ -23,14 +27,27 @@ export const CarTool = ({ cars: initialCars, crHolder }) => {
         id: cars.length > 0 ? (Math.max(...cars.map((c) => c.id), 0) + 1) : 1,
       }
     ]);
+
+    resetCarEdit();
   }
+
+  const updateCar = (updatedCar) => {
+    const updatedCars = [...cars];
+    const updatedCarIndex = updatedCars.findIndex((c) => c.id === updatedCar.id);
+    updatedCars[updatedCarIndex] = {
+      ...updatedCar,
+    };
+    setCars(updatedCars);
+
+    resetCarEdit();
+  };
 
   const deleteCar = (carId) => {
     setCars([
       ...cars
     ].filter(car => car.id !== carId));
 
-    setCarEditId(0);
+    resetCarEdit();
   };
 
   // console.log(carForm);
@@ -51,7 +68,7 @@ export const CarTool = ({ cars: initialCars, crHolder }) => {
   return (
     <>
       <ToolHeader toolTitle="Car Tool" />
-      <CarTable carEdit={carEditId} onEditClick={editCar} cars={cars} onDeleteCar={deleteCar} />
+      <CarTable carEdit={carEditId} cars={cars} onEditClick={editCar} onDeleteClick={deleteCar} onSaveClick={updateCar} onCancelClick={resetCarEdit} />
       <br/>
       <CarForm onSubmitForm={addCar} submitButtonLabel="Add Car"/>
       <br/>
