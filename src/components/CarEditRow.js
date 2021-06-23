@@ -1,13 +1,8 @@
-import { useState } from 'react';
+import { useForm } from '../hooks/useForm';
 
 export const CarEditRow = ({ car, onSaveClick, onCancelClick: resetCarEdit }) => {
 
-  const updateCar = () => onSaveClick({
-    ...updatedCar,
-    id: car.id,
-  });
-
-  const [ updatedCar, setUpdatedCar ] = useState({
+  const [ carForm, change ] = useForm({
     carMake: car.carMake,
     carModel: car.carModel,
     carYear: car.carYear,
@@ -15,22 +10,20 @@ export const CarEditRow = ({ car, onSaveClick, onCancelClick: resetCarEdit }) =>
     carPrice: car.carPrice,
   });
 
-  const change = (e) => {
-    setUpdatedCar({
-      ...updatedCar,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const updateCar = () => onSaveClick({
+    ...carForm,
+    id: car.id,
+  });
 
   return (
     <>
       <tr>
         <td>{car.id}</td>
-        <td><input type="text" value={updatedCar.carMake} onChange={change} name="carMake" /></td>
-        <td><input type="text" value={updatedCar.carModel} onChange={change} name="carModel" /></td>
-        <td><input type="text" value={updatedCar.carYear} onChange={change} name="carYear" /></td>
-        <td><input type="text" value={updatedCar.carColor} onChange={change} name="carColor" /></td>
-        <td><input type="text" value={updatedCar.carPrice} onChange={change} name="carPrice" /></td>
+        <td><input type="text" value={carForm.carMake} onChange={change} name="carMake" /></td>
+        <td><input type="text" value={carForm.carModel} onChange={change} name="carModel" /></td>
+        <td><input type="text" value={carForm.carYear} onChange={change} name="carYear" /></td>
+        <td><input type="text" value={carForm.carColor} onChange={change} name="carColor" /></td>
+        <td><input type="text" value={carForm.carPrice} onChange={change} name="carPrice" /></td>
         <td><button type="button" onClick={updateCar}>Save</button><button type="button" onClick={resetCarEdit}>Cancel</button></td>
       </tr>
     </>
