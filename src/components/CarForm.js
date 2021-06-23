@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useForm } from '../hooks/useForm';
 
 export const CarForm = ({ onSubmitForm, submitButtonLabel }) => {
 
-  const [ carForm, setCarForm ] = useState({
+  const [ carForm, change, resetForm ] = useForm({
     carMake: '',
     carModel: '',
     carYear: '',
@@ -10,23 +10,10 @@ export const CarForm = ({ onSubmitForm, submitButtonLabel }) => {
     carPrice: '',
   });
 
-  const change = (e) => {
-    setCarForm({
-      ...carForm,
-      [ e.target.name ]: e.target.value,
-    });
-  };
-
   const submitForm = () => {
     onSubmitForm(carForm);
 
-    setCarForm({
-      carMake: '',
-      carModel: '',
-      carYear: '',
-      carColor: '',
-      carPrice: '',  
-    });
+    resetForm();
   };
 
   return (

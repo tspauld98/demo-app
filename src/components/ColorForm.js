@@ -1,26 +1,15 @@
-import { useState } from 'react';
+import { useForm } from '../hooks/useForm';
 
 export const ColorForm = ({ onSubmitForm, submitButtonLabel }) => {
 
-  const [ colorForm, setColorForm ] = useState({
+  const [ colorForm, change, resetForm ] = useForm({
     colorName: '',
     colorHexcode: '',
   });
 
-  const change = (e) => {
-    setColorForm({
-      ...colorForm,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   const submitForm = () => {
     onSubmitForm(colorForm);
-
-    setColorForm({
-      colorName: "",
-      colorHexcode: "",
-    });
+    resetForm();
   };
 
   return(
