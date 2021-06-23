@@ -1,4 +1,6 @@
-export const CarViewRow = ({ car, onDeleteCar }) => {
+export const CarViewRow = ({ car, onEditCar, onDeleteCar }) => {
+
+  const editCar = () => onEditCar(car.id);
   const deleteCar = () => onDeleteCar(car.id);
 
   return (
@@ -10,7 +12,7 @@ export const CarViewRow = ({ car, onDeleteCar }) => {
         <td>{car.carYear}</td>
         <td>{car.carColor}</td>
         <td>{car.carPrice}</td>
-        <td><button type="button" value={car.id} onClick={deleteCar}>Delete</button></td>
+        <td><button type="button" value={car.id} onClick={editCar}>Edit</button><button type="button" value={car.id} onClick={deleteCar}>Delete</button></td>
       </tr>
     </>
   );

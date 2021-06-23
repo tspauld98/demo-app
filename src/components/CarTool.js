@@ -9,6 +9,12 @@ export const CarTool = ({ cars: initialCars, crHolder }) => {
 
   const [ cars, setCars ] = useState([ ...initialCars ]);
 
+  const [ carEditId, setCarEditId ] = useState(0);
+
+  const editCar = (carId) => {
+    setCarEditId(carId);
+  };
+
   const addCar = (carForm) => {
     setCars([
       ...cars,
@@ -23,6 +29,8 @@ export const CarTool = ({ cars: initialCars, crHolder }) => {
     setCars([
       ...cars
     ].filter(car => car.id !== carId));
+
+    setCarEditId(0);
   };
 
   // console.log(carForm);
@@ -43,7 +51,7 @@ export const CarTool = ({ cars: initialCars, crHolder }) => {
   return (
     <>
       <ToolHeader toolTitle="Car Tool" />
-      <CarTable cars={cars} onDeleteCar={deleteCar} />
+      <CarTable carEdit={carEditId} onEditClick={editCar} cars={cars} onDeleteCar={deleteCar} />
       <br/>
       <CarForm onSubmitForm={addCar} submitButtonLabel="Add Car"/>
       <br/>
