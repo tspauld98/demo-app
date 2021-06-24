@@ -3,3 +3,7 @@ export const ToolFooter = ({ copyRightHolder }) => <>
     <small>Copyright {new Date().getFullYear()}. {copyRightHolder}</small>
   </footer>
 </>;
+
+ToolFooter.defaultProps = {
+  copyRightHolder: "A Cool Company, Inc.",
+}

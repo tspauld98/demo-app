@@ -1,64 +1,32 @@
-import { useState } from 'react';
-import { useList } from '../hooks/useList';
+import { useCarToolStore } from '../hooks/useCarToolStore';
 
 import { ToolHeader } from './ToolHeader';
 import { CarTable } from './CarTable';
 import { CarForm } from './CarForm';
 import { ToolFooter } from './ToolFooter';
 
-export const CarTool = ({ cars: initialCars, crHolder }) => {
+export const CarTool = ({ initialCars }) => {
 
-  const [ carEditId, setCarEditId ] = useState(0);
+  const { cars, carEditId, addCar, updateCar, deleteCar, editCar, cancelCar } = useCarToolStore([ ...initialCars ]);
 
-  const editCar = (carId) => {
-    setCarEditId(carId);
-  };
-
-  const resetCarEdit = () => {
-    setCarEditId(0);
-  }
-
-  const [ cars, addItem, updateItem, deleteItem ] = useList([ ...initialCars ]);
-
-  const addCar = (carForm) => {
-    addItem(carForm);
-    resetCarEdit();
-  }
-
-  const updateCar = (updatedCar) => {
-    updateItem(updatedCar);
-    resetCarEdit();
-  };
-
-  const deleteCar = (carId) => {
-    deleteItem(carId);
-    resetCarEdit();
-  };
-
-  // console.log(carForm);
-
-  // const carItems = props.cars.map((car) => {
-  //   return (
-  //     <tr key={car.id}>
-  //       <td>{car.id}</td>
-  //       <td>{car.carMake}</td>
-  //       <td>{car.carModel}</td>
-  //       <td>{car.carYear}</td>
-  //       <td>{car.carColor}</td>
-  //       <td>{car.carPrice}</td>
-  //     </tr>
-  //   );
-  // });
+  console.log(cars);
 
   return (
     <>
       <ToolHeader toolTitle="Car Tool" />
-      <CarTable carEdit={carEditId} cars={cars} onEditClick={editCar} onDeleteClick={deleteCar} onSaveClick={updateCar} onCancelClick={resetCarEdit} />
+      <CarTable carEdit={carEditId} cars={cars} onEditClick={editCar} onDeleteClick={deleteCar} onSaveClick={updateCar} onCancelClick={cancelCar} />
       <br/>
       <CarForm onSubmitForm={addCar} submitButtonLabel="Add Car"/>
       <br/>
-      <ToolFooter copyRightHolder={crHolder}/>
+      <ToolFooter />
     </>
   );
 
+};
+
+CarTool.defaultProps = {
+  initialCars: [
+    { id: 1, carMake: "Toyota", carModel: "Avalon Limited Hybrid", carYear: "2019", carColor: "White", carPrice: "$45,000" },
+    { id: 2, carMake: "Porche", carModel: "911 Spyder", carYear: "2021", carColor: "Navy", carPrice: "$150,000" },
+  ],
 };

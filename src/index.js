@@ -5,23 +5,10 @@ import { render } from 'react-dom';
 import { ColorTool } from './components/ColorTool';
 import { CarTool } from './components/CarTool';
 
-const colorList = [
-  { id: 1, colorName: "green", colorHexcode: "" },
-  { id: 2, colorName: "blue", colorHexcode: "" },
-  { id: 3, colorName: "red", colorHexcode: "" },
-];
-
-const carList = [
-  { id: 1, carMake: "Toyota", carModel: "Avalon Limited Hybrid", carYear: "2019", carColor: "White", carPrice: "$45,000" },
-  { id: 2, carMake: "Porche", carModel: "911 Spyder", carYear: "2021", carColor: "Navy", carPrice: "$150,000" },
-];
-
-const crHolder = "A Cool Company, Inc.";
-
 const elements = (
   <>
-    <ColorTool colors={colorList} crHolder={crHolder} />
-    <CarTool cars={carList} crHolder={crHolder} />
+    <ColorTool />
+    <CarTool />
   </>
 );
 

@@ -1,12 +1,13 @@
+import { useColorToolStore } from "../hooks/useColorToolStore";
+
 import { ToolHeader } from "./ToolHeader";
 import { ColorList } from "./ColorList";
 import { ColorForm } from "./ColorForm";
 import { ToolFooter } from "./ToolFooter";
-import { useColorToolStore } from "../hooks/useColorToolStore";
 
-export const ColorTool = ({ colors: initialColors, crHolder }) => {
+export const ColorTool = ({ initialColors }) => {
 
-  const { colors, addColor, deleteColor } = useColorToolStore([ ...initialColors ]);
+  const { colors, addColor, deleteColor } = useColorToolStore([...initialColors]);
 
   console.log(colors);
 
@@ -16,7 +17,15 @@ export const ColorTool = ({ colors: initialColors, crHolder }) => {
       <ColorList colors={colors} onDeleteClick={deleteColor} />
       <ColorForm onSubmitForm={addColor} submitButtonLabel="Add Color"/>
       <br/>
-      <ToolFooter copyRightHolder={crHolder}/>
+      <ToolFooter />
     </>
   );
+};
+
+ColorTool.defaultProps = {
+  initialColors: [
+    { id: 1, colorName: "green", colorHexcode: "" },
+    { id: 2, colorName: "blue", colorHexcode: "" },
+    { id: 3, colorName: "red", colorHexcode: "" },
+  ],
 };
