@@ -13,8 +13,6 @@ export const ColorTool = ({ colors: initialColors, crHolder }) => {
     addItem(colorForm);
   }
 
-  console.log(colors);
-
   return (
     <>
       <ToolHeader toolTitle="Color Tool" />
