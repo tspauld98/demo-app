@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useList } from '../hooks/useList';
 
 import { ToolHeader } from './ToolHeader';
 import { CarTable } from './CarTable';
@@ -6,8 +7,6 @@ import { CarForm } from './CarForm';
 import { ToolFooter } from './ToolFooter';
 
 export const CarTool = ({ cars: initialCars, crHolder }) => {
-
-  const [ cars, setCars ] = useState([ ...initialCars ]);
 
   const [ carEditId, setCarEditId ] = useState(0);
 
@@ -19,34 +18,20 @@ export const CarTool = ({ cars: initialCars, crHolder }) => {
     setCarEditId(0);
   }
 
-  const addCar = (carForm) => {
-    setCars([
-      ...cars,
-      {
-        ...carForm,
-        id: cars.length > 0 ? (Math.max(...cars.map((c) => c.id), 0) + 1) : 1,
-      }
-    ]);
+  const [ cars, addItem, updateItem, deleteItem ] = useList([ ...initialCars ]);
 
+  const addCar = (carForm) => {
+    addItem(carForm);
     resetCarEdit();
   }
 
   const updateCar = (updatedCar) => {
-    const updatedCars = [...cars];
-    const updatedCarIndex = updatedCars.findIndex((c) => c.id === updatedCar.id);
-    updatedCars[updatedCarIndex] = {
-      ...updatedCar,
-    };
-    setCars(updatedCars);
-
+    updateItem(updatedCar);
     resetCarEdit();
   };
 
   const deleteCar = (carId) => {
-    setCars([
-      ...cars
-    ].filter(car => car.id !== carId));
-
+    deleteItem(carId);
     resetCarEdit();
   };
 

@@ -6,9 +6,9 @@ import { ColorTool } from './components/ColorTool';
 import { CarTool } from './components/CarTool';
 
 const colorList = [
-  { id: 1, colorName: "green" },
-  { id: 2, colorName: "blue" },
-  { id: 3, colorName: "red" },
+  { id: 1, colorName: "green", colorHexcode: "" },
+  { id: 2, colorName: "blue", colorHexcode: "" },
+  { id: 3, colorName: "red", colorHexcode: "" },
 ];
 
 const carList = [
