@@ -1,31 +1,44 @@
-import { useForm } from '../hooks/useForm';
+import { Component } from 'react';
 
-export const CarEditRow = ({ car, onSaveClick, onCancelClick: resetCarEdit }) => {
+export class CarEditRow extends Component {
 
-  const [ carForm, change ] = useForm({
-    carMake: car.carMake,
-    carModel: car.carModel,
-    carYear: car.carYear,
-    carColor: car.carColor,
-    carPrice: car.carPrice,
-  });
+  constructor(props) {
+    super(props);
 
-  const updateCar = () => onSaveClick({
-    ...carForm,
-    id: car.id,
-  });
+    this.state = {
+      carMake: this.props.car.carMake,
+      carModel: this.props.car.carModel,
+      carYear: this.props.car.carYear,
+      carColor: this.props.car.carColor,
+      carPrice: this.props.car.carPrice,  
+    };
+  }
+  
+  // Use this form of method declaration when the event handler needs to reference 'this'
+  change = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  }
 
-  return (
-    <>
-      <tr>
-        <td>{car.id}</td>
-        <td><input type="text" value={carForm.carMake} onChange={change} name="carMake" /></td>
-        <td><input type="text" value={carForm.carModel} onChange={change} name="carModel" /></td>
-        <td><input type="text" value={carForm.carYear} onChange={change} name="carYear" /></td>
-        <td><input type="text" value={carForm.carColor} onChange={change} name="carColor" /></td>
-        <td><input type="text" value={carForm.carPrice} onChange={change} name="carPrice" /></td>
-        <td><button type="button" onClick={updateCar}>Save</button><button type="button" onClick={resetCarEdit}>Cancel</button></td>
-      </tr>
-    </>
-  );
-};
+  updateCar = () => {
+    this.props.onSaveClick({
+      ...this.state,
+      id: this.props.car.id,
+    });
+  }
+
+  render () {
+    return (
+        <tr>
+          <td>{this.props.car.id}</td>
+          <td><input type="text" value={this.state.carMake} onChange={this.change} name="carMake" /></td>
+          <td><input type="text" value={this.state.carModel} onChange={this.change} name="carModel" /></td>
+          <td><input type="text" value={this.state.carYear} onChange={this.change} name="carYear" /></td>
+          <td><input type="text" value={this.state.carColor} onChange={this.change} name="carColor" /></td>
+          <td><input type="text" value={this.state.carPrice} onChange={this.change} name="carPrice" /></td>
+          <td><button type="button" onClick={this.updateCar}>Save</button><button type="button" onClick={this.props.onCancelClick}>Cancel</button></td>
+        </tr>
+    );
+  }
+}
