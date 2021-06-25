@@ -1,11 +1,8 @@
-// No longer need to use import React from 'react';
-
 import { render } from 'react-dom';
 
 import { ColorToolStoreProvider } from './contexts/colorToolStoreContext';
-import { ColorToolContainer } from './containers/ColorToolContainer';
 import { CarToolStoreProvider } from './contexts/carToolStoreContext';
-import { CarToolContainer } from './containers/CarToolContainer';
+import { App } from './components/App';
 
 const colorList = [
   { id: 1, colorName: "green", colorHexcode: "" },
@@ -18,15 +15,8 @@ const carList = [
   { id: 2, carMake: "Porche", carModel: "911 Spyder", carYear: "2021", carColor: "Navy", carPrice: "$150,000" },
 ];
 
-const elements = (
-  <>
-    <ColorToolStoreProvider initialColors={colorList}>
-      <ColorToolContainer />
-    </ColorToolStoreProvider>
-    <CarToolStoreProvider initialCars={carList}>
-      <CarToolContainer />
-    </CarToolStoreProvider>
-  </>
-);
-
-render(elements, document.querySelector("#root"));
+render(<ColorToolStoreProvider initialColors={colorList}>
+  <CarToolStoreProvider initialCars={carList}>
+    <App />
+  </CarToolStoreProvider>
+</ColorToolStoreProvider>, document.querySelector("#root"));
