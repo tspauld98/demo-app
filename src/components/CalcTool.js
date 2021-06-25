@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useState } from 'react';
 
-export const CalcTool = ({ result, onAdd: add, onSubtract: subtract, onMultiply: multiply, onDivide: divide, onClear: clear }) => {
+export const CalcTool = ({ result, operations, onAdd: add, onSubtract: subtract, onMultiply: multiply, onDivide: divide, onClear: clear }) => {
 
   const [ numInput, setNumInput ] = useState(0);
 
@@ -9,6 +9,8 @@ export const CalcTool = ({ result, onAdd: add, onSubtract: subtract, onMultiply:
     clear();
     setNumInput(0);
   }
+
+  console.log(operations);
 
   return (
     <div>
@@ -22,6 +24,19 @@ export const CalcTool = ({ result, onAdd: add, onSubtract: subtract, onMultiply:
         <button type="button" onClick={() => multiply(numInput)}>X</button>
         <button type="button" onClick={() => numInput > 0 && divide(numInput)}>/</button>
         <button type="button" onClick={() => clearAll()}>C</button>
+      </div>
+
+      <div>
+        Operation History:
+        <ul>
+          {operations.map(op => {
+            return (
+              <li key={op.id}>
+                {op.id}: {op.operator}&nbsp;{op.operand}
+              </li>
+            )
+          })}
+        </ul>
       </div>
     </div>
   )

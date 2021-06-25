@@ -15,6 +15,8 @@ export const CalcToolContainer = () => {
 
   const result = useSelector(state => state.result);
 
+  const operations = useSelector(state => state.operations);
+
   const actions = bindActionCreators({
     onAdd: createAddAction,
     onSubtract: createSubtractAction,
@@ -23,6 +25,6 @@ export const CalcToolContainer = () => {
     onClear: createClearAction,
   }, useDispatch());
 
-  return <CalcTool result={result} {...actions} />
+  return <CalcTool result={result} operations={operations} {...actions} />
 
 };
