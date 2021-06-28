@@ -2,22 +2,22 @@ import { combineReducers } from 'redux';
 
 import { ADD_ACTION, SUBTRACT_ACTION, MULTIPLY_ACTION, DIVIDE_ACTION, CLEAR_ACTION, DELETE_ACTION, SET_ERROR_ACTION } from '../actions/calc-tool-actions';
 
-export const resultReducer = (result = 0, action) => {
-  switch(action.type) {
-    case ADD_ACTION:
-      return result + action.value;
-    case SUBTRACT_ACTION:
-      return result - action.value;
-    case MULTIPLY_ACTION:
-      return result * action.value;
-    case DIVIDE_ACTION:
-      return result / action.value;
-    case CLEAR_ACTION:
-      return 0;
-    default:
-      return result;
-  };
-};
+// export const resultReducer = (result = 0, action) => {
+//   switch(action.type) {
+//     case ADD_ACTION:
+//       return result + action.value;
+//     case SUBTRACT_ACTION:
+//       return result - action.value;
+//     case MULTIPLY_ACTION:
+//       return result * action.value;
+//     case DIVIDE_ACTION:
+//       return result / action.value;
+//     case CLEAR_ACTION:
+//       return 0;
+//     default:
+//       return result;
+//   };
+// };
 
 export const operationsReducer = (operations = [], action) => {
 
@@ -54,7 +54,7 @@ export const errorMsgReducer = (_, action) => {
 };
 
 export const calcToolReducer = combineReducers({
-  result: resultReducer,
+  // result: resultReducer,
   errorMsg: errorMsgReducer,
   operations: operationsReducer,
 });
