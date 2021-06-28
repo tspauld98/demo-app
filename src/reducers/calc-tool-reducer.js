@@ -1,68 +1,60 @@
-import { ADD_ACTION, SUBTRACT_ACTION, MULTIPLY_ACTION, DIVIDE_ACTION, CLEAR_ACTION } from '../actions/calc-tool-actions';
+import { combineReducers } from 'redux';
 
-export const calcToolReducer = (state = { result: 0, operations: [] }, action) => {
+import { ADD_ACTION, SUBTRACT_ACTION, MULTIPLY_ACTION, DIVIDE_ACTION, CLEAR_ACTION, DELETE_ACTION, SET_ERROR_ACTION } from '../actions/calc-tool-actions';
+
+export const resultReducer = (result = 0, action) => {
+  switch(action.type) {
+    case ADD_ACTION:
+      return result + action.value;
+    case SUBTRACT_ACTION:
+      return result - action.value;
+    case MULTIPLY_ACTION:
+      return result * action.value;
+    case DIVIDE_ACTION:
+      return result / action.value;
+    case CLEAR_ACTION:
+      return 0;
+    default:
+      return result;
+  };
+};
+
+export const operationsReducer = (operations = [], action) => {
 
   switch(action.type) {
     case ADD_ACTION:
-      return {
-        ...state,
-        result: state.result + action.value,
-        operations: [
-          ...state.operations,
-          {
-            id: Math.max(...state.operations.map((op) => op.id), 0) + 1,
-            operator: "+",
-            operand: action.value,
-          }
-        ],
-      };
     case SUBTRACT_ACTION:
-      return {
-        ...state,
-        result: state.result - action.value,
-        operations: [
-          ...state.operations,
-          {
-            id: Math.max(...state.operations.map((op) => op.id), 0) + 1,
-            operator: "-",
-            operand: action.value,
-          }
-        ],
-      };
     case MULTIPLY_ACTION:
-      return {
-        ...state,
-        result: state.result * action.value,
-        operations: [
-          ...state.operations,
-          {
-            id: Math.max(...state.operations.map((op) => op.id), 0) + 1,
-            operator: "X",
-            operand: action.value,
-          }
-        ],
-      };
     case DIVIDE_ACTION:
-      return {
-        ...state,
-        result: state.result / action.value,
-        operations: [
-          ...state.operations,
-          {
-            id: Math.max(...state.operations.map((op) => op.id), 0) + 1,
-            operator: "/",
-            operand: action.value,
-          }
-        ],
-      };
+      return [
+        ...operations,
+        {
+          id: Math.max(...operations.map((op) => op.id), 0) + 1,
+          operator: action.type,
+          operand: action.value,
+        },
+      ];
     case CLEAR_ACTION:
-      return {
-        ...state,
-        result: 0,
-        operations: [],
-      };
+      return [];
+    case DELETE_ACTION:
+      return [
+        ...operations
+      ].filter(item => item.id !== action.value);
     default:
-      return state;
-  };
-
+      return operations;
+  }
 };
+
+export const errorMsgReducer = (_, action) => {
+  if (action.type === SET_ERROR_ACTION) {
+    return 'Cannot divide by zero. Try again.';
+  }
+
+  return '';
+};
+
+export const calcToolReducer = combineReducers({
+  result: resultReducer,
+  errorMsg: errorMsgReducer,
+  operations: operationsReducer,
+});

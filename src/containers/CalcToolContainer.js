@@ -7,6 +7,7 @@ import {
   createMultiplyAction,
   createDivideAction,
   createClearAction,
+  createDeleteAction,
 } from '../actions/calc-tool-actions';
 
 import { CalcTool } from '../components/CalcTool';
@@ -14,6 +15,8 @@ import { CalcTool } from '../components/CalcTool';
 export const CalcToolContainer = () => {
 
   const result = useSelector(state => state.result);
+
+  const errorMsg = useSelector(state => state.errorMsg);
 
   const operations = useSelector(state => state.operations);
 
@@ -23,8 +26,9 @@ export const CalcToolContainer = () => {
     onMultiply: createMultiplyAction,
     onDivide: createDivideAction,
     onClear: createClearAction,
+    onDelete: createDeleteAction,
   }, useDispatch());
 
-  return <CalcTool result={result} operations={operations} {...actions} />
+  return <CalcTool result={result} errorMsg={errorMsg} operations={operations} {...actions} />
 
 };
