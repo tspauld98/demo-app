@@ -1,11 +1,11 @@
-import { useColorToolStoreContext } from "../contexts/colorToolStoreContext";
+import { useColorList } from "../hooks/useColorList";
 
 import { ToolHeader } from "../components/ToolHeader";
 import { ColorForm } from "../components/ColorForm";
 
 export const ColorFormContainer = () => {
 
-  const { colors, addColor } = useColorToolStoreContext();
+  const { colors, addColor } = useColorList();
 
   console.log(colors);
 

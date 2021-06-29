@@ -40,5 +40,79 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+
+      // Original way to call REST
+      // const xhr = new XMLHttpRequest();
+
+      // xhr.addEventListener("readystatechange", () => {
+      //   if (xhr.status === 200 && xhr.readyState === 4) {
+      //     console.log(JSON.parse(xhr.responseText));
+      //   }
+      // });
+
+      // xhr.open("GET", "http://localhost:3060/cars");
+      // xhr.send();
+
+      // Newer way to call REST
+      // fetch("http://localhost:3060/cars")
+      //   .then(res => res.json())
+      //   .then(cars => console.log(cars));
+
+      // Yet newer way to call REST
+      const getAllCars = async () => {
+        const res = await fetch("http://localhost:3060/cars", {
+          method: 'GET'
+        });
+        const cars = await res.json();
+        return cars;
+      };
+
+      const getOneCar = async (carId) => {
+        const res = await fetch("http://localhost:3060/cars/" + encodeURIComponent(carId));
+        const cars = await res.json();
+        return cars;
+      };
+
+      //getOneCar(1).then(cars => console.log(cars));
+
+      const appendCar = async (car) => {
+        const res = await fetch("http://localhost:3060/cars", {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json'},
+          body: JSON.stringify(car)
+        });
+        const carThatWasAdded = await res.json();
+        return carThatWasAdded;
+      };
+
+      // appendCar({
+      //   make: 'Ford',
+      //   model: 'F-150',
+      //   year: 2019,
+      //   color: 'Black',
+      //   price: 75000,
+      // }).then(car => {
+      //   console.log(car);
+      // });
+
+      const replaceCar = async (car) => {
+        const res = await fetch( "http://localhost:3060/cars/" + encodeURIComponent(car.id), {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json'},
+          body: JSON.stringify(car)
+        });
+        const carThatWasReplaced = await res.json();
+        return carThatWasUpdated;
+      };
+
+      const deleteCar = async (carId) => {
+        await fetch( "http://localhost:3060/cars/" + encodeURIComponent(carId), {
+          method: 'DELETE',
+        });
+      };
+
+
+    </script>
   </body>
 </html>
