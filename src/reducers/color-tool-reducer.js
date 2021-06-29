@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 
-import { ADD_COLOR_ACTION, REFRESH_COLORS_DONE_ACTION, /* DELETE_COLOR_ACTION */ } from "../actions/color-tool-actions";
+import { /* ADD_COLOR_ACTION, */ REFRESH_COLORS_DONE_ACTION, /* DELETE_COLOR_ACTION */ } from "../actions/color-tool-actions";
 
 // const initialColorList = [
 //   { id: 1, colorName: "green", colorHexcode: "" },
@@ -12,14 +12,14 @@ export const colorsReducer = ( colors = [], action ) => {
   switch(action.type) {
     case REFRESH_COLORS_DONE_ACTION:
       return action.value;
-    case ADD_COLOR_ACTION:
-      return ([
-        ...colors,
-        {
-          id: Math.max(...colors.map((c) => c.id), 0) + 1,
-          ...action.value,
-        },
-      ]);
+    // case ADD_COLOR_ACTION:
+    //   return ([
+    //     ...colors,
+    //     {
+    //       id: Math.max(...colors.map((c) => c.id), 0) + 1,
+    //       ...action.value,
+    //     },
+    //   ]);
     // case DELETE_COLOR_ACTION:
     //   return ([
     //     ...colors
