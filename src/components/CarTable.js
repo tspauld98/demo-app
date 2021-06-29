@@ -1,7 +1,7 @@
 import { CarEditRow } from './CarEditRow';
 import { CarViewRow } from './CarViewRow';
 
-export const CarTable = ({ carEdit, cars, onEditClick: editCar, onDeleteClick: deleteCar, onSaveClick: updateCar, onCancelClick: resetCarEdit }) => {
+export const CarTable = ({ carEdit, cars, onUpdateCar: updateCar, onDeleteCar: deleteCar, onEditCar: editCar, onCancelCar: resetCarEdit }) => {
   return (
     <table>
       <thead>

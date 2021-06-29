@@ -1,6 +1,6 @@
 import { useForm } from '../hooks/useForm';
 
-export const CarForm = ({ onSubmitForm, submitButtonLabel }) => {
+export const CarForm = ({ submitButtonLabel, onAddCar: onSubmitForm }) => {
 
   const [ carForm, change, resetForm ] = useForm({
     carMake: '',
