@@ -27,7 +27,7 @@ export const addColor = (color) => {
 
     dispatch(createAddColorRequestAction());
 
-    return fetch("http://localhost:3060/colors/", {
+    return fetch("http://localhost:3060/colors", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json'},
       body: JSON.stringify(color)

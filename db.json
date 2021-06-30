@@ -32,14 +32,6 @@
       "year": 2018,
       "color": "red",
       "price": 100000
-    },
-    {
-      "make": "Ford",
-      "model": "F-150",
-      "year": 2019,
-      "color": "Black",
-      "price": 75000,
-      "id": 3
     }
   ]
 }
